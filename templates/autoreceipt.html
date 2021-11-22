@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acknowledge Recepit</title>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+.invoice-box {
+    max-width: 800px;
+    margin: auto;
+    padding: 30px;
+    border: 1px solid #eee;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    font-size: 15px;
+    line-height: 24px;
+}
+
+.invoice-box table{
+    width: 100%;
+    line-height: inherit;
+    text-align: left;
+}
+
+.invoice-box table td{
+    padding: 5px;
+    vertical-align: top;
+}
+
+.invoice-box table tr td:nth-child(2){
+     text-align: right;
+}
+
+.invoice-box table tr.info1 table td{
+    padding-bottom: 40px;
+}
+
+.invoice-box table tr.info2 td{
+    background: #eee;
+    border-bottom: 1px solid #ddd;
+    font-weight: bo;
+}
+
+.invoice-box table tr.info3 td{
+    padding-bottom: 20px;
+
+}
+
+.invoice-box table tr.extra td{
+    border-bottom: 1px solid #eee;
+    
+}
+
+</style>
+<body>
+    <div class="invoice-box">
+        <table cellpadding="0" cellspacing="5">
+            <tr class="top">
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td>
+                                <h4>Invoice of the Maintaince Bill</h4>
+                            </td>
+                            <td>
+                                Amount Received: {{amount}} <br>
+                                Date and Time : {{time}}
+                                <br>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <!-- <tr>
+                <td>
+                    <table>
+                        <tr class=info1>
+                            <td colspan="1000">
+                          
+                            Name of the Payee {{name}} <br>
+                                <br>
+                                <br>
+                               <td>Block and Flat Number {{block}}-{{flat}}</td> <br>
+
+                            <td colspan="1000">
+                                    Date of the Payment {{date}}}<br>
+                                    <br>
+                                    <br>
+                                    Month of the Maintaince Bill {{from}} <br>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr> -->
+            <tr class="info2">
+                <td>
+                    Date of the Payment 
+                </td>
+                <td>{{date}}</td>
+            </tr>
+            <tr class="info2">
+                <td>
+                    Duration of the Maintaince Bill 
+                </td>
+                <td>{{frmm}} {{frmy}} to {{tom}} {{toy}}</td>
+            </tr>
+            <tr class="info2">
+                <td>
+                    Name of the Payee
+                </td>
+                <td>{{name}}</td>
+            </tr>
+            <tr class="info2">
+                <td>
+                    Block & Flat Number  
+                </td>
+                <td>{{block}}-{{flat}}</td>
+            </tr>
+            <tr class="info2">
+                <td>
+                    Method of Payment 
+                </td>
+                <td>{{method}}</td>
+            </tr>
+            <tr class="info2">
+                <td>Transcation Id  </td>
+                <td>{{transaction_id}}</td>
+
+            </tr>
+            <br>
+            <tr class="info3">
+                <td>Amount </td>
+                <td>{{raw_amount}}</td>
+           </tr>
+            
+            >
+            <tr class="info3">
+                <td>Taxes </td>
+                <td>{{tax}}</td>
+            </tr>
+            <tr class="info3">
+                <td>Extra Amount</td>
+                <td>{{fee}}</td>
+            </tr>
+            <tr class="extra">
+                <td>Reason for Extra Charges (Excluding all the Taxes if Any)   </td>
+                <td>-</td>
+            </tr>
+            <tr class="extra">
+                <td><b>Total </b>  </td>
+                <td> {{amount}}</td>
+            </tr>
+        </table>
+    <p style="font-size:12px ;text-align:center" >Powered by stepzer</p>
+
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/Dashboard-1.css' %}">
+
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <style>
+        table {
+            border-collapse: separate;
+            border-spacing: 20px 15px;
+        }
+    </style>
+    <div class="sidebar">
+        <div class="logo-details">
+            <i class='bx bxl-logo'></i>
+            <span class="logo_name">Stepzer
+            </span>
+        </div>
+        <ul class="nav-links">
+            <li>
+                <a href="{% url 'home:homepage' %}" class="active">
+                    <i class='bx bx-grid-alt'></i>
+                    <span class="links_name">Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'home:profile' %}">
+                    <i class='bx bx-user'></i>
+                    <span class="links_name">Your Profile</span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'home:bills' %}">
+                    <i class='bx bx-list-ul'></i>
+                    <span class="links_name">Maintainence Bills</span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'home:employe' %}">
+                    <i class='bx bx-face'></i>
+                    <span class="links_name">Employee</span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'home:billing' %}">
+                    <i class='bx bx-card'></i>
+                    <span class="links_name">Billing</span>
+                </a>
+            </li>
+            {% for i in q_info %}
+            {% if i.is_staff %}
+            <li>
+                <a href="{% url 'home:offline' %}">
+                    <i class='bx bx-library'></i>
+                    <span class="links_name">Offline Payments</span>
+                </a>
+            </li>
+            {% else %}
+
+            {% endif %}
+            {% endfor %}
+            <li>
+                <a href="{% url 'home:settings' %}">
+                    <i class='bx bx-cog'></i>
+                    <span class="links_name">Settings</span>
+                </a>
+            </li>
+            <li class="log_out">
+                <a href="{% url 'home:logout' %}">
+                    <i class='bx bx-log-out'></i>
+                    <span class="links_name">Log out</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <section class="home-section">
+        <nav>
+            <div class="sidebar-button">
+                <i class='bx bx-menu sidebarBtn'></i>
+                <span class="dashboard">Dashboard</span>
+            </div>
+            
+            <div class="profile-details">
+                <span class="admin_name">
+                {% for q in q_info %}
+                
+                    <p>{{q.first_name}}</p>                  
+                    </span>
+                    {% endfor %} 
+
+            </div>
+        </nav>
+        <div class="home-content">
+            <div class="overview-boxes">
+                <div class="box">
+                    <div class="right-side">
+                        <div class="box-topic">Block & Flat Number</div>
+                        <div class="number">
+                         
+                              {% for b in q_info %}
+                           
+                                <p>{{ b.block }}-{{ b.flat }}</p> 
+
+                                {% endfor %} 
+                        </div>
+                        <div class="indicator">
+                            <i class='bx bx-click'></i>
+                            <span class="text">
+                                {% for b in q_info %}
+                           
+                                {{b.flat_type}}
+                      
+                                {% endfor %} 
+                                </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="right-side">
+                        <div class="box-topic">Status of the Maintainence Bill</div>
+                        {% if amt %}
+                            
+                            <div class="number">Pending Rs {{amt}}/-</div>
+
+                        {% else  %}
+                        <div class="number">No Due</div>
+
+                        {% endif %}
+                        
+                        <div class="indicator">
+                            <i class='bx bx-click'></i>
+                            <span class="text">To be Paid</span>
+                        </div>
+                    </div>
+                    <span class="iconify" data-icon="bx:bxs-checkbox"></span>
+                </div>
+                <div class="box">
+                    <div class="right-side">
+                        <div class="box-topic">Pay your Maintainence Bill</div>
+                        <div class="number">Rs {{amt}}/-</div>
+                        <div class="indicator">
+                            <i class='bx bx-tick'></i>
+                            <span class="text">Pay Now</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="right-side">
+                        <div class="box-topic">Update your Personal Details</div>
+                        <div class="number">Pending Email Verfication</div>
+                        <div class="indicator">
+                            <i class='bx bx-click'></i>
+                            <span class="text">Email Not Verified!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sales-boxes">
+                <div class="recent-sales box">
+                    <div class="title">Members in the committee</div>
+                    <div class="sales-details">
+                        <table class="table">
+                            <tr>
+                                <th>Name of the Members</th>
+                                <th>Designation </th>
+                                <th>Block & Flat Number</th>
+    
+                                
+    
+                            </tr>
+    
+                            {% for i in q_comm %}
+
+    
+    
+                            <tr>
+                                <td>{{i.first_name}}</td>
+                                <td>{{i.designation}}</td>
+                                <td>{{i.block}}-{{i.flat}}</td>
+                            </tr>
+                            {% endfor %}
+    
+    
+    
+    
+                        </table>
+                        
+                    </div>
+                </div>
+                <div class="top-sales box">
+                    <div class="title">Projects and Funds Initiated</div>
+                    <ul class="top-sales-details">
+                        <li>
+                            <a href="#">
+                                <span class="product">Water Pipeline Repairs</span>
+                            </a>
+                            <span class="price">Rs 20000/-</span>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="product">Standard Maintainence</span>
+                            </a>
+                            <span class="price">Rs 10000/-</span>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="product">E-Cards for Security Personnel</span>
+                            </a>
+                            <span class="price">Rs 5000/-</span>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="product">Renovation of Garden</span>
+                            </a>
+                            <span class="price">Rs 5000/-</span>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="product">Technical Maintainence</span>
+                            </a>
+                            <span class="price">Rs 2000/-</span>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="product">Covid-19 Sanitzation Fee</span>
+                            </a>
+                            <span class="price">Rs 2000/-</span>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        let sidebar = document.querySelector(".sidebar");
+        let sidebarBtn = document.querySelector(".sidebarBtn");
+        sidebarBtn.onclick = function () {
+            sidebar.classList.toggle("active");
+            if (sidebar.classList.contains("active")) {
+                sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+            } else
+                sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+        }
+    </script>
+</body>
+
+</html>

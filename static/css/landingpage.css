@@ -1,0 +1,180 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+    background-color: #f4f4f4;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 0.4fr 0.5fr 0.1fr 1fr 1fr 1fr 0.1fr 0.1fr 0fr 1fr 1fr 1fr 1fr 1fr 1fr 0.01fr;
+  grid-auto-columns: 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    ". . menu menu menu menu menu menu menu menu menu menu photo photo photo photo"
+    ". . menu menu menu menu menu menu menu menu menu menu photo photo photo photo"
+    "logo logo logo logo . . . . . . . . photo photo photo photo"
+    "logo logo logo logo title title title title title title title title photo photo photo photo"
+    "logo logo logo logo title title title title title title title title photo photo photo photo"
+    "logo logo logo logo title title title title title title title title photo photo photo photo"
+    ". . . . title title title title title title title title photo photo photo photo"
+    ". . . . title title title title title title title title photo photo photo photo"
+    ". . . . . . . . . . . . photo photo photo photo"
+    ". . howitworks howitworks howitworks howitworks howitworks howitworks howitworks howitworks howitworks . photo photo photo photo"
+    ". . howitworks howitworks howitworks howitworks howitworks howitworks howitworks howitworks howitworks . photo photo photo photo"
+    "howitworksimage howitworksimage howitworksimage howitworksimage howitworksimage howitworksimage howitworksimage howitworksimage howitworksimage howitworksimage howitworksimage howitworksimage photo photo photo photo"
+    "howitworksimage howitworksimage howitworksimage howitworksimage howitworksimage howitworksimage howitworksimage howitworksimage howitworksimage howitworksimage howitworksimage howitworksimage photo photo photo photo"
+    "howitworksimage howitworksimage howitworksimage howitworksimage howitworksimage howitworksimage howitworksimage howitworksimage howitworksimage howitworksimage howitworksimage howitworksimage photo photo photo photo"
+    "howitworksimage howitworksimage howitworksimage howitworksimage howitworksimage howitworksimage howitworksimage howitworksimage howitworksimage howitworksimage howitworksimage howitworksimage photo photo photo photo"
+    ". . . . . . . . . . . . photo photo photo photo";
+}
+
+.logo
+{ grid-area: logo;
+ /* border: 1px solid black;
+        height: 200px;
+        width: 200px;
+        margin-left: 50px; 
+        text-align: center;
+        border-radius: 250px;
+        background-color: teal;
+   */   
+margin-top: 10px; }
+
+.photo { grid-area: photo;
+         background-color: teal;}
+
+.title { grid-area: title;
+         font-size: 55px;
+    font-weight: 800;
+         text-align: left;
+         margin-right: 10px;}
+
+.menu {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    ". home features contactus aboutus login";
+  grid-area: menu;
+    
+    font-size: 20px;
+    height: 60px;
+
+}
+
+.home { grid-area: home; }
+
+.features { grid-area: features; }
+
+.contactus { grid-area: contactus; }
+
+.aboutus { grid-area: aboutus; }
+
+.login { grid-area: login; }
+
+#button{
+    background-color: aliceblue;
+    border-radius: 20px;
+    height: 38px;
+    width: 85px;
+}
+.howitworks { grid-area: howitworks;
+              
+              text-align: center;
+              font-size: 20px;}
+
+.howitworksimage {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "createaccount paybill trackbill";
+  grid-area: howitworksimage;
+}
+
+.createaccount {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "createaccounttext createaccounttext createaccounttext createaccounttext createaccounttext createaccounttext"
+    "createaccounttext createaccounttext createaccounttext createaccounttext createaccounttext createaccounttext"
+    ". . . . . ."
+    ". createaccountimage createaccountimage createaccountimage createaccountimage ."
+    ". createaccountimage createaccountimage createaccountimage createaccountimage ."
+    ". createaccountimage createaccountimage createaccountimage createaccountimage ."
+    ". createaccountimage createaccountimage createaccountimage createaccountimage .";
+  grid-area: createaccount;
+    
+  
+}
+
+.createaccountimage { grid-area: createaccountimage; 
+background-color: rgba(25, 116, 106, 0.308);
+border-radius: 12px;}
+
+.createaccounttext { grid-area: createaccounttext; 
+font-size: 20px;
+                 text-align: center;}
+
+.paybill {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "paybilltext paybilltext paybilltext paybilltext paybilltext paybilltext"
+    "paybilltext paybilltext paybilltext paybilltext paybilltext paybilltext"
+    ". . . . . ."
+    ". paybillimage paybillimage paybillimage paybillimage ."
+    ". paybillimage paybillimage paybillimage paybillimage ."
+    ". paybillimage paybillimage paybillimage paybillimage ."
+    ". paybillimage paybillimage paybillimage paybillimage .";
+  grid-area: paybill;
+    font-size: 20px;
+                 text-align: center;
+}
+
+.paybilltext { grid-area: paybilltext; }
+
+.paybillimage { grid-area: paybillimage;
+                background-color:rgba(25, 116, 106, 0.308);
+                border-radius: 20px;}
+
+.trackbill {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "trackbilltext trackbilltext trackbilltext trackbilltext trackbilltext trackbilltext"
+    "trackbilltext trackbilltext trackbilltext trackbilltext trackbilltext trackbilltext"
+    ". . . . . ."
+    ". trackbillimage trackbillimage trackbillimage trackbillimage ."
+    ". trackbillimage trackbillimage trackbillimage trackbillimage ."
+    ". trackbillimage trackbillimage trackbillimage trackbillimage ."
+    ". trackbillimage trackbillimage trackbillimage trackbillimage .";
+  grid-area: trackbill;
+}
+
+.trackbilltext { grid-area: trackbilltext;
+font-size: 20px;
+                 text-align: center;}
+
+.trackbillimage { grid-area: trackbillimage;
+                  background-color:rgba(25, 116, 106, 0.308);
+                  border-radius: 20px;}
+

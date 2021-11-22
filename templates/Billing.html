@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html>
+
+<head>
+    <title>Billing</title>
+    <link rel="stylesheet" href="{% static 'css/Billing.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.js"></script>
+</head>
+
+<body>
+
+    <h2>Billing</h2>
+    <div class="row">
+        <div class="col-75">
+            <div class="container">
+                
+                <form id="validate" action="">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-50">
+                            <div class="col-25">
+                                <div class="container">
+                                    <h4>Number of months  <span class="price" style="color:black"><b> {{nmon}}</b></span></h4><br>
+                                    <h4>Monthly Maintainence charges  <span class="price" style="color:black"><b>Rs 1000/-</b></span></h4>
+                                    <br>
+                                    <h4>Total<span class="price" style="color:black"><b> Rs {{total}}/-</b></span><br>
+
+                                    
+                                    
+                                    <hr>
+                                </div>
+                            </div>
+                            
+                            <br>
+                            <br>
+                            <label for="Paying"><i class="fa fa-institution"></i><b> Paying For</b></label>
+                            <p> From - {{frmm}} {{frmy}}</p>
+                            <p>To - {{tom}} {{toy}}</p>
+                            <br>
+                            <p>Number of months : {{nmon}}</p>
+
+                        </div>
+                    </div>
+                    <input id="rzp-button1" type="submit" value="Proceed to Payment" class="btn">
+
+                </form>
+                <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+                <script>
+                    var options = {
+                        "key": "{{ api_key }}", // Enter the Key ID generated from the Dashboard
+                        "amount": "50000", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+                        "currency": "INR",
+                        "name": "Darshan",
+                        "description": "Test Transaction",
+                        "image": "https://example.com/your_logo",
+                        "order_id": "{{order_id}}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+                        "callback_url": "{% url 'home:payment' order_id  %}",
+                        "prefill": {
+                            "name": "Gaurav Kumar",
+                            "email": "darshankale11.dk@gmail.com",
+                            "contact": "9999999999"
+                        },
+                        "notes": {
+                            "address": "Razorpay Corporate Office"
+                        },
+                        "theme": {
+                            "color": "#3399cc"
+                        }
+                    };
+                    var rzp1 = new Razorpay(options);
+                    document.getElementById('rzp-button1').onclick = function (e) {
+                        rzp1.open();
+                        e.preventDefault();
+                    }
+                </script>
+            </div>
+        </div>
+        </form>
+        <label>
+            
+    </div>
+
+    <script>
+        $('#validate').validate({
+            roles: {
+                fullname: {
+                    required: true,
+                },
+                email: {
+                    required: true,
+                },
+                address: {
+                    required: true,
+                },
+                city: {
+                    required: true,
+                },
+                state: {
+                    required: true,
+                },
+                zip: {
+                    required: true,
+                },
+                cardname: {
+                    required: true,
+                },
+                cardnumber: {
+                    required: true,
+                },
+                expmonth: {
+                    required: true,
+                },
+                expyear: {
+                    required: true,
+                },
+                cvv: {
+                    required: true,
+                },
+
+            },
+            messages: {
+                fullname: "Please input full name*",
+                email: "Please input email*",
+                city: "Please input city*",
+                address: "Please input address*",
+                state: "Please input state*",
+                zip: "Please input address*",
+                cardname: "Please input card name*",
+                cardnumber: "Please input card number*",
+                expmonth: "Please input exp month*",
+                expyear: "Please input exp year*",
+                cvv: "Please input cvv*",
+            },
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!doctype html>
+{% load static %}
+
+<html lang="en">
+
+<head>
+
+    <title>Billing</title>
+
+
+</head>
+
+<body>
+
+    <!-- Begin page content -->
+    <h1 class="mt-5">Billing Page</h1>
+    <form action="" id="form1" method="POST">
+        {% csrf_token %}
+        <p>From</p>
+    <select name="frmm" id="frmm">
+        
+        <option label={{from}} selected>{{from}}</option>
+        
+
+    </select>
+    <select name="frmy" id="frmy"><option value="{{ year }}" selected>{{ year }}</option> </select>
+    <p>To</p>
+
+    <select name="to_month" id="to_month">
+        {% for k,v in months.items %}
+
+        <option value="{{ v }}" >{{v}}</option>
+        {% endfor%}
+    </select>
+    <select name="to_year" id="to_year">
+        {% for y in years %}
+            <option value="{{ y }}">{{ y }}</option>
+        {% endfor %}
+    
+    </select>
+
+    <p>Total Price: <span id="totalPrice">0</span></p>
+    <button type="submit" form="form1" > Pay</button>
+    </form>
+    
+</body>
+
+</html>
