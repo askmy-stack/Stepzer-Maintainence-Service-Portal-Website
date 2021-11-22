@@ -1,0 +1,288 @@
+
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Settings</title>
+    <link rel="stylesheet" href="{% static 'css/settings.css' %}">
+
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="logo-details">
+            <i class='bx bxl-logo'></i>
+            <span class="logo_name">Stepzer
+            </span>
+        </div>
+        <ul class="nav-links">
+            <li>
+                <a href="{% url 'home:homepage' %}" class="active">
+                    <i class='bx bx-grid-alt'></i>
+                    <span class="links_name">Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'home:profile' %}">
+                    <i class='bx bx-user'></i>
+                    <span class="links_name">Your Profile</span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'home:bills' %}">
+                    <i class='bx bx-list-ul'></i>
+                    <span class="links_name">Maintainence Bills</span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'home:employe' %}">
+                    <i class='bx bx-face'></i>
+                    <span class="links_name">Employee</span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'home:billing' %}">
+                    <i class='bx bx-card'></i>
+                    <span class="links_name">Billing</span>
+                </a>
+            </li>
+            {% if p_info.is_staff %}
+            <li>
+                <a href="{% url 'home:offline' %}">
+                    <i class='bx bx-library'></i>
+                    <span class="links_name">Offline Payments</span>
+                </a>
+            </li>
+            {% else %}
+
+            {% endif %}
+            
+            <li>
+                <a href="{% url 'home:settings' %}">
+                    <i class='bx bx-cog'></i>
+                    <span class="links_name">Settings</span>
+                </a>
+            </li>
+            <li class="log_out">
+                <a href="{% url 'home:logout' %}">
+                    <i class='bx bx-log-out'></i>
+                    <span class="links_name">Log out</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <section class="home-section">
+        <nav>
+            <div class="sidebar-button">
+                <i class='bx bx-menu sidebarBtn'></i>
+                <span class="dashboard">Settings</span>
+            </div>
+            
+            <div class="profile-details">
+                <span class="admin_name">{{p_info.first_name}}</span>
+            </div>
+        </nav>
+        <section class="main_content">
+            <div class="home-content">
+                <div class="overview-boxes">
+                    <div class="box">
+
+                        <section class="info">
+                            <div class="settingstext">
+                                <h4>Update your details</h4>
+                            </div>
+                            <br>
+                            {% for message in messages %}
+        
+        
+                                <div class="alert alert-success">
+                                <a class="close" href="#" data-dismiss="alert"></a>
+                                <p style="color:green">   * {{ message }}</p>
+                                </div>
+
+                                {% endfor %} 
+                                <br> 
+                            <div class="change_username">
+                                <form action="" method="post">
+                                    {% csrf_token %}
+                                <p><b>Phone Number &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;</b>
+                                    <input  name="phone" id="changeusername">
+                                    <button type="submit" id="button">Update Phone Number</button>
+                                </p>
+                            </form>
+                            </div>
+                            <br>
+
+                            <div class="change_username">
+                                <form action="" method="post">
+                                    {% csrf_token %}
+
+                                <p><b>Change Name &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;</b>
+                                    <input name="name" type="text" id="changeusernameid">
+                                    <button type="submit" id="button">Change Name</button>
+                                </p>
+                            </form>
+                            </div>
+                            <br>
+
+                            <div class="change_mail">
+                                <form action="" method="post">
+                                    {% csrf_token %}
+
+                                <p><b>Change Email ID &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;</b>
+                                    <input name= "email" type="email" id="change_mail">
+                                    <button id="button">Change Email ID</button>
+                                </p>
+                            </div>
+                        </form>
+                            <br>
+
+                            <div class="change_password">
+                                <form action="" method="post">
+
+                                    {% csrf_token %}
+                                    <p><b>Change Password &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; </b>
+                                    <input name="password" type="password" id="changepassword">
+                                    <button type="submit" id="button">Change Password</button>
+                                </p>
+                                </form>
+                            </div>
+                            <br>
+
+                            <div class="type">
+                                <form action="" method="post">
+                                    {% csrf_token %}
+
+                                <p><b>Change the Status of <br>your flat&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+                                    &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;</b>
+                                    <select name="flat_type" >
+                                            <option value="Owner">Owner</option>
+                                            <option value="Tenant">Tenant</option>
+                                            <option value="Empty">Empty</option>
+                                        </select>
+                                        &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+                                        <button  type="submit" id="button">Change flat status</button>
+                                    </p>
+                            </form>
+
+                                </div>
+
+                                <br>
+                                <div class="change_mail">
+                                    {% if p_info.is_staff %}
+                                    <p><b>-----------------------------Admin controls ------------------------- &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;</b>
+                                        
+                                    </p>
+                                </div>
+                                <br>
+                            <div class="type">
+                                <form action="" method="post">
+                                    {% csrf_token %}
+                                    <p><b>Employe Name &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;</b>
+                                        <select name="emp_name" id="">
+                                            <option ></option>
+    
+                                            {% for i in emp_data %}
+                                            <option value="{{ i.emp_id }}">{{ i.emp_name }}</option>
+                                            {% endfor %}
+                                        </select>
+    
+    
+                                        <b>&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;Present&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;</b>
+                                            <select name="present">
+                                                <option value="" selected>select</option>
+                                                
+                                                <option value="Y">YES</option>
+                                                <option value="N">NO</option>
+                                                
+                                            </select>
+                                            &nbsp;&nbsp; &nbsp;
+                                        <b>&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;Available&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;</b>
+
+                                            <select name="available">
+                                                <option value="" selected>select</option>
+                                                
+                                                <option value="Y">YES</option>
+                                                <option value="N">NO</option>
+                                                
+                                            </select>&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
+                                            <button type="submit" id="button">Update</button>
+    
+                                                                
+                                 </form>
+<br>
+<br>
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                <p><b>Member Name &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;</b>
+                                    <select name="member_name" id="">
+                                        <option ></option>
+
+                                        {% for i in mem_data %}
+                                        <option value="{{ i.first_name }}">{{ i.first_name }}</option>
+                                        {% endfor %}
+                                    </select>
+
+
+                                    <b>&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;Change the Role in the Comittee&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;</b>
+                                        <select name="chng_desig" >
+                                            <option value="member" selected>member</option>
+                                            
+                                            <option value="Chairman">Chairman</option>
+                                            <option value="Vice-Chairman">Vice-Chairman</option>
+                                            <option value="Secretary">Secretary</option>
+                                            <option value="Vice-Secretary">Vice-Secretary</option>
+                                            <option value="Advisor">Advisor</option>
+                                            <option value="Techinal Head">Techinal Head</option>
+                                        </select>
+                                        &nbsp;&nbsp; &nbsp;
+                                        <button type="submit" id="button">Update</button>
+
+                                                            
+                             </form>
+
+                                    <script>
+                                        let sidebar = document.querySelector(".sidebar");
+                                        let sidebarBtn = document.querySelector(".sidebarBtn");
+                                        sidebarBtn.onclick = function () {
+                                            sidebar.classList.toggle("active");
+                                            if (sidebar.classList.contains("active")) {
+                                                sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+                                            } else
+                                                sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+                                        }
+                                    </script>
+                                    <br>
+                                    <br>
+                                    <form action="" method="post">
+                                        {% csrf_token %}
+                                        <p><b>Add schedule &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;</b>
+                                            <input type="text" placeholder="Schedule name here... " name="sch_name" id="">
+                                        </input>
+        
+        
+                                            <b>&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;From Time&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;</b>
+                                            <input type="time" id="ftime" name="ftime">    
+                                           
+                                                &nbsp;&nbsp; &nbsp;
+                                            <b>&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;To Time&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;</b>
+    
+                                            <input type="time" id="ttime" name="ttime">&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
+                                            <input type="date" id="date" name="date">&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
+
+                                                <button type="submit" id="button">Add</button>
+        
+                                                                    
+                                     </form>
+
+                                    {% endif %}
+                                    
+</body>
+
+</html>

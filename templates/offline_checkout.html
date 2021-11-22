@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Billing Form</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet"
+        id="bootstrap-css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker3.css"
+        rel="stylesheet" id="bootstrap-css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/offline form.css' %}">
+</head>
+
+<body>
+    {% if done == 0 %}
+    <div class="wrapper">
+        <div class="title">
+            Payment Process
+        </div>
+        <div class="form">
+
+            <div class="inputfield">
+                <label><b>Paying for</b>  </label>
+                <p>{{name}}</p>
+            </div>
+            <div class="inputfield">
+                <label>FROM </label>
+                <p>{{frmm}} {{frmy}}</p>
+            </div>
+            <div class="inputfield">
+                <label>TO</label>
+                <p>{{tom}} {{toy}}</p>
+            </div>
+            <div class="inputfield">
+                <label>Number of months</label>
+                <p>{{nmon}}</p>
+            </div>
+            <div class="inputfield">
+                <label>Total</label>
+                <p>{{total}}</p>
+            </div>
+            
+        </div>
+        <div class="inputfield">
+            <form action="" id="form1" method="POST">
+                {% csrf_token %}
+                
+
+                <div class="inputfield terms">
+                    <label class="check"><BR></BR>
+                        <input  type="checkbox" name="confirmed" value="confirmed" id="confirmed">
+                        <span class="checkmark" style="color:Tomato;">I hereby declare that above mentioned AMOUNT IS ALREADY DEPOSITED</span>
+                        
+                    </label>
+
+                </div><BR>
+                <div class="inputfield">
+                    <input type="submit" value="PROCEED" form="form1" class="btn">
+                </div>
+            </form>
+        </div>
+    </div>
+    {% elif done == 1 %}
+    <div class="wrapper">
+        <div class="title">
+        </div>
+        <div class="form">
+            <div class="inputfield">
+                <label>Payment Success</label>
+            </div>
+            <br>
+            {% if mailed == 1 %}
+            <div class="inputfield">
+                <label><p style="color:green">Receipt has been mailed to the owner successfully !</p></label><br>
+                <br>
+                
+
+            </div>
+            <div class="inputfield">
+                
+            <label><a href="{% url 'home:homepage' %}">Home</a></label>
+                
+
+            </div>
+            {% endif %}
+    </div>
+    </div>
+
+    {% elif done == 2 %}
+    <div class="wrapper">
+        <div class="title">
+        </div>
+        <div class="form">
+            <div class="inputfield">
+                <label>Payment Failed .Please try after some time</label>
+            </div>
+            
+    </div>
+    </div>
+
+    {% endif %}
+</body>
+
+</html>

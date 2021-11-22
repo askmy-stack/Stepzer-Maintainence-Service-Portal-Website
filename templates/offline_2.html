@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Billing Form</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet"
+        id="bootstrap-css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker3.css"
+        rel="stylesheet" id="bootstrap-css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/offline form.css' %}">
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="title">
+            Payment Process
+        </div>
+        <div class="form">
+
+            <div class="inputfield">
+                <label>Name</label>
+                <p>{{user.first_name}}</p>
+            </div>
+            <div class="inputfield">
+                <label>Email Address</label>
+                <p>{{user.email}}</p>
+            </div>
+            <div class="inputfield">
+                <label>Phone Number</label>
+                <p>{{user.phone}}</p>
+            </div>
+            <div class="inputfield">
+                <label>Block Number</label>
+                <p>{{user.block}}</p>
+            </div>
+            <div class="inputfield">
+                <label>Flat number</label>
+                <p>{{user.flat}}</p>
+
+            </div>
+
+            <div class="inputfield">
+                <label>Date of Payment</label>
+                <div class="container">
+                    <div class="row">
+                    </div>
+                    <div class="row">
+                        <div class='col-sm-6'>
+                            <form>
+                                <div class="form-group">
+                                    <div class='input-group date' id='datepicker'>
+                                        <input type='text' class="form-control" />
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript"
+                src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+            <script>
+                $(function () {
+                    $('#datepicker').datepicker({
+                        format: "dd/mm/yyyy",
+                        autoclose: true,
+                        todayHighlight: true,
+                        showOtherMonths: true,
+                        selectOtherMonths: true,
+                        autoclose: true,
+                        changeMonth: true,
+                        changeYear: true,
+                        orientation: "button"
+                    });
+                });
+            </script>
+        </div>
+        <div class="inputfield">
+            <label>Duration for which maintenance is to be Paid</label>
+            <form action="" id="form1" method="POST">
+                {% csrf_token %}
+                <p>From</p>
+                <select name="frmm" id="frmm">
+
+                    <option label={{from}} selected>{{from}}</option>
+
+
+                </select>
+                <select name="frmy" id="frmy">
+                    <option value="{{ year }}" selected>{{ year }}</option>
+                </select>
+                <p>To</p>
+
+                <select name="to_month" id="to_month">
+                    {% for k,v in months.items %}
+
+                    <option value="{{ v }}">{{v}}</option>
+                    {% endfor%}
+                </select>
+                <select name="to_year" id="to_year">
+                    {% for y in years %}
+                    <option value="{{ y }}">{{ y }}</option>
+                    {% endfor %}
+
+                </select>
+
+                <div class="inputfield terms">
+                    <label class="check"><BR></BR>
+                        <input type="checkbox">
+                        <span class="checkmark" style="color:Tomato;">KINDLY CONFIRM YOUR DETAILS BEFORE PROCEEDING</span><BR></BR>
+                        <input type="checkbox">
+                        <span class="checkmark">Agree to terms and conditions</span>
+
+
+                    </label>
+
+                </div><BR>
+                <div class="inputfield">
+                    <input type="submit" value="PROCEED" form="form1" class="btn">
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

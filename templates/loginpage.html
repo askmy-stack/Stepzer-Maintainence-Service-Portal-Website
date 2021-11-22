@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Login Form</title>
+  <link rel="stylesheet" href="{% static 'loginpage.css' %}">
+</head>
+
+<body>
+  <div class="container">
+    <div class="login">
+      <form method="post">
+        {% csrf_token %}
+        <h1>Login</h1>
+        <hr>
+        <p>Making Lives Easy!</p>
+        {% for messages in messages %}
+        <p style="color:tomato" > {{messages}}</p>
+        {% endfor %}
+        <label>Username</label>
+        <input name="username" type="text" placeholder="enter your username">
+        <label>Password</label>
+        <input name="password" type="password" placeholder="enter your password!">
+        <button>Submit</button>
+        <p>
+          <a href="#">Forgot Password?</a>
+        </p>
+        <p class="para-2">
+          Not have an account? <a href="{% url 'signup' %}">Sign Up Here</a>
+        </p>
+      </form>
+    </div>
+    <div class="pic">
+      <img src="{%static 'images/login.jpg' %}">
+    </div>
+  </div>
+
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}" />
+</head>
+
+<body>
+    <div class="signup-box">
+        <h1>Sign Up</h1>
+        <h4>It takes a minute to create an Account</h4>
+        {% for message in messages %}
+        
+        
+                                
+          <p style="font-size:13px;color:red">{{ message }}</p>
+    
+           {% endfor %}
+
+        <form method="post" >
+            {% csrf_token %}
+            <label>First Name</label>
+            <input name="fname" type="text" placeholder="" />
+            <label>Last Name</label>
+            <input name="lname" type="text" placeholder="" />
+            <label>Email</label>
+            <input name="email" type="email" placeholder="" />
+            <label>Phone Number</label>
+            <input name="phone" type="number" class="input">
+            <label>Block Number</label>
+            <div class="custom_select">
+                <select  name="enterblock" class=options>
+                    <option value="1">Select</option>
+                    <option value="L1">L-1</option>
+                    <option value="L2">L-2</option>
+                    <option value="L3">L-3</option>
+                    <option value="L4">L-4</option>
+                </select>
+                <label>Flat Number</label>
+                <input name="flat" type="number" class="input" />
+                </select>
+                <label>Type of Resident</label>
+                <div class="custom_select">
+                    <select name="enterflattype" class="options">
+                        <option value="Tenant">Tenant</option>
+                        <option value="Owner">Owner</option>
+                        <option value="Empty">Owner-Empty</option>
+
+                    </select>
+                    <label>Create Username</label>
+                    <input name="username" type="text" placeholder="" />
+                    <label>Password</label>
+                    <input name="password" type="password" placeholder="" />
+                    <label>Confirm Password</label>
+                    <input name="cnf_password" type="password" placeholder="" />
+                    <button type="submit" class=submit>Submit</button>
+
+        </form>
+        <p>
+            By clicking the Sign Up button,you agree to our <br />
+            <a href="#">Terms and Condition</a> and <a href="#">Policy Privacy</a>
+        </p>
+    </div>
+    
+</body>
